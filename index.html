@@ -413,42 +413,24 @@
       color: #ffd200;
     }
 
-    /* Donation button */
+    /* Donation section */
     .donate-section {
       margin-top: 1.5rem;
       padding-top: 1.5rem;
       border-top: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    .donate-btn {
-      display: inline-flex;
+    .donate-title {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 12px;
+      display: flex;
       align-items: center;
-      gap: 8px;
-      background: linear-gradient(135deg, #e91e63 0%, #ff5252 100%);
-      color: #fff;
-      border: none;
-      padding: 12px 32px;
-      font-size: 0.95rem;
-      font-weight: 600;
-      font-family: 'Outfit', sans-serif;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(233, 30, 99, 0.35);
-      text-decoration: none;
+      justify-content: center;
+      gap: 6px;
     }
 
-    .donate-btn:hover {
-      transform: translateY(-2px) scale(1.03);
-      box-shadow: 0 6px 25px rgba(233, 30, 99, 0.5);
-    }
-
-    .donate-btn:active {
-      transform: translateY(0) scale(0.98);
-    }
-
-    .donate-btn .heart {
-      font-size: 1.1rem;
+    .donate-title .heart {
       animation: heartPulse 1.2s infinite;
     }
 
@@ -464,10 +446,69 @@
       }
     }
 
+    .donate-btns {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .donate-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      font-family: 'Outfit', sans-serif;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      min-width: 80px;
+    }
+
+    .donate-btn:hover {
+      transform: translateY(-2px) scale(1.05);
+    }
+
+    .donate-btn:active {
+      transform: translateY(0) scale(0.97);
+    }
+
+    .donate-btn.tier-1 {
+      background: linear-gradient(135deg, #e91e63 0%, #ff5252 100%);
+      box-shadow: 0 3px 12px rgba(233, 30, 99, 0.3);
+    }
+
+    .donate-btn.tier-1:hover {
+      box-shadow: 0 5px 20px rgba(233, 30, 99, 0.5);
+    }
+
+    .donate-btn.tier-2 {
+      background: linear-gradient(135deg, #7c4dff 0%, #536dfe 100%);
+      box-shadow: 0 3px 12px rgba(124, 77, 255, 0.3);
+    }
+
+    .donate-btn.tier-2:hover {
+      box-shadow: 0 5px 20px rgba(124, 77, 255, 0.5);
+    }
+
+    .donate-btn.tier-3 {
+      background: linear-gradient(135deg, #f7971e 0%, #ffd200 100%);
+      color: #1a1a2e;
+      box-shadow: 0 3px 12px rgba(247, 151, 30, 0.3);
+    }
+
+    .donate-btn.tier-3:hover {
+      box-shadow: 0 5px 20px rgba(247, 151, 30, 0.5);
+    }
+
     .donate-label {
-      font-size: 0.75rem;
-      color: rgba(255, 255, 255, 0.35);
-      margin-top: 8px;
+      font-size: 0.7rem;
+      color: rgba(255, 255, 255, 0.3);
+      margin-top: 10px;
     }
 
     @media (max-width: 480px) {
@@ -494,9 +535,14 @@
         font-size: 1rem;
       }
 
+      .donate-btns {
+        gap: 8px;
+      }
+
       .donate-btn {
-        padding: 10px 24px;
-        font-size: 0.85rem;
+        padding: 8px 14px;
+        font-size: 0.8rem;
+        min-width: 64px;
       }
     }
   </style>
@@ -534,9 +580,15 @@
       </div>
 
       <div class="donate-section">
-        <a class="donate-btn" href="https://buy.stripe.com/test_dRm5kv508e3I8li0VD4Ni00" target="_blank" rel="noopener">
-          <span class="heart">❤️</span> 후원하기 ($1)
-        </a>
+        <div class="donate-title"><span class="heart">❤️</span> 후원하기</div>
+        <div class="donate-btns">
+          <a class="donate-btn tier-1" href="https://buy.stripe.com/test_dRm5kv508e3I8li0VD4Ni00" target="_blank"
+            rel="noopener">$1</a>
+          <a class="donate-btn tier-2" href="https://buy.stripe.com/test_9B600bdwEf7M9pmbAh4Ni01" target="_blank"
+            rel="noopener">$10</a>
+          <a class="donate-btn tier-3" href="https://buy.stripe.com/test_5kQ28jcsAf7M0SQ8o54Ni02" target="_blank"
+            rel="noopener">$100</a>
+        </div>
         <div class="donate-label">Powered by Stripe</div>
       </div>
     </div>
