@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>🎱 로또 번호 생성기</title>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     body {
       font-family: 'Outfit', sans-serif;
@@ -26,21 +31,63 @@
       pointer-events: none;
       z-index: 0;
     }
+
     .bg-particles span {
       position: absolute;
       border-radius: 50%;
-      background: rgba(255,255,255,0.04);
+      background: rgba(255, 255, 255, 0.04);
       animation: float 20s infinite linear;
     }
-    .bg-particles span:nth-child(1) { width: 300px; height: 300px; top: -10%; left: 20%; animation-duration: 25s; }
-    .bg-particles span:nth-child(2) { width: 200px; height: 200px; top: 60%; left: 70%; animation-duration: 18s; animation-delay: -5s; }
-    .bg-particles span:nth-child(3) { width: 400px; height: 400px; top: 30%; left: -10%; animation-duration: 30s; animation-delay: -10s; }
-    .bg-particles span:nth-child(4) { width: 150px; height: 150px; top: 80%; left: 40%; animation-duration: 22s; animation-delay: -3s; }
+
+    .bg-particles span:nth-child(1) {
+      width: 300px;
+      height: 300px;
+      top: -10%;
+      left: 20%;
+      animation-duration: 25s;
+    }
+
+    .bg-particles span:nth-child(2) {
+      width: 200px;
+      height: 200px;
+      top: 60%;
+      left: 70%;
+      animation-duration: 18s;
+      animation-delay: -5s;
+    }
+
+    .bg-particles span:nth-child(3) {
+      width: 400px;
+      height: 400px;
+      top: 30%;
+      left: -10%;
+      animation-duration: 30s;
+      animation-delay: -10s;
+    }
+
+    .bg-particles span:nth-child(4) {
+      width: 150px;
+      height: 150px;
+      top: 80%;
+      left: 40%;
+      animation-duration: 22s;
+      animation-delay: -3s;
+    }
 
     @keyframes float {
-      0% { transform: translateY(0) rotate(0deg); opacity: 0.5; }
-      50% { opacity: 1; }
-      100% { transform: translateY(-100vh) rotate(720deg); opacity: 0.5; }
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.5;
+      }
+
+      50% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(-100vh) rotate(720deg);
+        opacity: 0.5;
+      }
     }
 
     .container {
@@ -53,13 +100,13 @@
     }
 
     .card {
-      background: rgba(255,255,255,0.07);
+      background: rgba(255, 255, 255, 0.07);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.12);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 24px;
       padding: 2.5rem 2rem;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     }
 
     .title {
@@ -74,13 +121,18 @@
     }
 
     @keyframes shimmer {
-      0% { background-position: 0% center; }
-      100% { background-position: 200% center; }
+      0% {
+        background-position: 0% center;
+      }
+
+      100% {
+        background-position: 200% center;
+      }
     }
 
     .subtitle {
       font-size: 0.95rem;
-      color: rgba(255,255,255,0.5);
+      color: rgba(255, 255, 255, 0.5);
       margin-bottom: 2rem;
     }
 
@@ -106,18 +158,38 @@
       font-weight: 700;
       color: #fff;
       position: relative;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3), inset 0 -3px 6px rgba(0,0,0,0.2), inset 0 3px 6px rgba(255,255,255,0.15);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), inset 0 -3px 6px rgba(0, 0, 0, 0.2), inset 0 3px 6px rgba(255, 255, 255, 0.15);
       opacity: 0;
       transform: scale(0) rotate(-180deg);
       animation: ballPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
     }
 
     /* Color groups by number range */
-    .ball.range-1 { background: linear-gradient(145deg, #ffc107, #e6a800); } /* 1-10 */
-    .ball.range-2 { background: linear-gradient(145deg, #2196f3, #1976d2); } /* 11-20 */
-    .ball.range-3 { background: linear-gradient(145deg, #e91e63, #c2185b); } /* 21-30 */
-    .ball.range-4 { background: linear-gradient(145deg, #4caf50, #388e3c); } /* 31-40 */
-    .ball.range-5 { background: linear-gradient(145deg, #9c27b0, #7b1fa2); } /* 41-45 */
+    .ball.range-1 {
+      background: linear-gradient(145deg, #ffc107, #e6a800);
+    }
+
+    /* 1-10 */
+    .ball.range-2 {
+      background: linear-gradient(145deg, #2196f3, #1976d2);
+    }
+
+    /* 11-20 */
+    .ball.range-3 {
+      background: linear-gradient(145deg, #e91e63, #c2185b);
+    }
+
+    /* 21-30 */
+    .ball.range-4 {
+      background: linear-gradient(145deg, #4caf50, #388e3c);
+    }
+
+    /* 31-40 */
+    .ball.range-5 {
+      background: linear-gradient(145deg, #9c27b0, #7b1fa2);
+    }
+
+    /* 41-45 */
 
     .ball::after {
       content: '';
@@ -126,7 +198,7 @@
       left: 14px;
       width: 16px;
       height: 10px;
-      background: rgba(255,255,255,0.25);
+      background: rgba(255, 255, 255, 0.25);
       border-radius: 50%;
       transform: rotate(-30deg);
     }
@@ -138,15 +210,32 @@
       }
     }
 
-    .ball:nth-child(1) { animation-delay: 0.1s; }
-    .ball:nth-child(2) { animation-delay: 0.2s; }
-    .ball:nth-child(3) { animation-delay: 0.3s; }
-    .ball:nth-child(4) { animation-delay: 0.4s; }
-    .ball:nth-child(5) { animation-delay: 0.5s; }
-    .ball:nth-child(6) { animation-delay: 0.6s; }
+    .ball:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    .ball:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .ball:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    .ball:nth-child(4) {
+      animation-delay: 0.4s;
+    }
+
+    .ball:nth-child(5) {
+      animation-delay: 0.5s;
+    }
+
+    .ball:nth-child(6) {
+      animation-delay: 0.6s;
+    }
 
     .placeholder-text {
-      color: rgba(255,255,255,0.3);
+      color: rgba(255, 255, 255, 0.3);
       font-size: 1.1rem;
       font-weight: 600;
     }
@@ -180,9 +269,11 @@
     .generate-btn::before {
       content: '';
       position: absolute;
-      top: 0; left: -100%;
-      width: 100%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
       transition: 0.5s;
     }
 
@@ -193,13 +284,13 @@
     /* History */
     .history {
       margin-top: 2rem;
-      border-top: 1px solid rgba(255,255,255,0.08);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
       padding-top: 1.5rem;
     }
 
     .history-title {
       font-size: 0.85rem;
-      color: rgba(255,255,255,0.4);
+      color: rgba(255, 255, 255, 0.4);
       margin-bottom: 0.75rem;
       text-transform: uppercase;
       letter-spacing: 1px;
@@ -213,9 +304,18 @@
       overflow-y: auto;
     }
 
-    .history-list::-webkit-scrollbar { width: 4px; }
-    .history-list::-webkit-scrollbar-track { background: transparent; }
-    .history-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 4px; }
+    .history-list::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .history-list::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .history-list::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 4px;
+    }
 
     .history-item {
       display: flex;
@@ -223,7 +323,7 @@
       gap: 6px;
       padding: 8px;
       border-radius: 12px;
-      background: rgba(255,255,255,0.04);
+      background: rgba(255, 255, 255, 0.04);
       animation: fadeIn 0.3s ease;
     }
 
@@ -239,15 +339,36 @@
       color: #fff;
     }
 
-    .mini-ball.range-1 { background: linear-gradient(145deg, #ffc107, #e6a800); }
-    .mini-ball.range-2 { background: linear-gradient(145deg, #2196f3, #1976d2); }
-    .mini-ball.range-3 { background: linear-gradient(145deg, #e91e63, #c2185b); }
-    .mini-ball.range-4 { background: linear-gradient(145deg, #4caf50, #388e3c); }
-    .mini-ball.range-5 { background: linear-gradient(145deg, #9c27b0, #7b1fa2); }
+    .mini-ball.range-1 {
+      background: linear-gradient(145deg, #ffc107, #e6a800);
+    }
+
+    .mini-ball.range-2 {
+      background: linear-gradient(145deg, #2196f3, #1976d2);
+    }
+
+    .mini-ball.range-3 {
+      background: linear-gradient(145deg, #e91e63, #c2185b);
+    }
+
+    .mini-ball.range-4 {
+      background: linear-gradient(145deg, #4caf50, #388e3c);
+    }
+
+    .mini-ball.range-5 {
+      background: linear-gradient(145deg, #9c27b0, #7b1fa2);
+    }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-8px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .count-controls {
@@ -260,15 +381,15 @@
 
     .count-label {
       font-size: 0.9rem;
-      color: rgba(255,255,255,0.5);
+      color: rgba(255, 255, 255, 0.5);
     }
 
     .count-btn {
       width: 36px;
       height: 36px;
       border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.2);
-      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.08);
       color: #fff;
       font-size: 1.2rem;
       font-weight: 600;
@@ -281,8 +402,8 @@
     }
 
     .count-btn:hover {
-      background: rgba(255,255,255,0.15);
-      border-color: rgba(255,255,255,0.35);
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.35);
     }
 
     .count-value {
@@ -292,15 +413,95 @@
       color: #ffd200;
     }
 
+    /* Donation button */
+    .donate-section {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .donate-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #e91e63 0%, #ff5252 100%);
+      color: #fff;
+      border: none;
+      padding: 12px 32px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      font-family: 'Outfit', sans-serif;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(233, 30, 99, 0.35);
+      text-decoration: none;
+    }
+
+    .donate-btn:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 6px 25px rgba(233, 30, 99, 0.5);
+    }
+
+    .donate-btn:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    .donate-btn .heart {
+      font-size: 1.1rem;
+      animation: heartPulse 1.2s infinite;
+    }
+
+    @keyframes heartPulse {
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.25);
+      }
+    }
+
+    .donate-label {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.35);
+      margin-top: 8px;
+    }
+
     @media (max-width: 480px) {
-      .card { padding: 2rem 1.25rem; }
-      .title { font-size: 1.6rem; }
-      .ball { width: 52px; height: 52px; font-size: 1.15rem; }
-      .balls-area { gap: 8px; }
-      .generate-btn { padding: 14px 36px; font-size: 1rem; }
+      .card {
+        padding: 2rem 1.25rem;
+      }
+
+      .title {
+        font-size: 1.6rem;
+      }
+
+      .ball {
+        width: 52px;
+        height: 52px;
+        font-size: 1.15rem;
+      }
+
+      .balls-area {
+        gap: 8px;
+      }
+
+      .generate-btn {
+        padding: 14px 36px;
+        font-size: 1rem;
+      }
+
+      .donate-btn {
+        padding: 10px 24px;
+        font-size: 0.85rem;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <div class="bg-particles">
@@ -330,6 +531,13 @@
       <div class="history" id="historySection" style="display:none;">
         <div class="history-title">📋 이전 번호</div>
         <div class="history-list" id="historyList"></div>
+      </div>
+
+      <div class="donate-section">
+        <a class="donate-btn" href="https://buy.stripe.com/test_dRm5kv508e3I8li0VD4Ni00" target="_blank" rel="noopener">
+          <span class="heart">❤️</span> 후원하기 ($1)
+        </a>
+        <div class="donate-label">Powered by Stripe</div>
       </div>
     </div>
   </div>
@@ -424,4 +632,5 @@
     }
   </script>
 </body>
+
 </html>
